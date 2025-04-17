@@ -10,8 +10,9 @@
         .gallery { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; height: calc(100vh - 50px); }
         .gallery img { 
             width: 100vw; 
-            height: 100%; 
-            object-fit: cover; 
+            height: auto; 
+            max-height: 100%; 
+            object-fit: contain; 
             scroll-snap-align: center; 
         }
         footer { 
