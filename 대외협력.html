@@ -33,7 +33,6 @@
     <style>
         :root {
             --app-height: 100%;
-            --footer-height: 120px;
         }
         
         * {
@@ -56,7 +55,7 @@
         body {
             display: flex;
             flex-direction: column;
-            background-color: #000; /* 배경색을 검정으로 변경하여 이미지와 푸터 사이의 간격이 눈에 띄지 않도록 함 */
+            background-color: #f8f9fa; /* 배경색을 밝은 색상으로 변경 */
         }
         
         .main-container {
@@ -72,7 +71,7 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            background-color: #000;
+            background-color: #f8f9fa; /* 슬라이더 배경색을 밝은 색상으로 변경 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -97,8 +96,8 @@
         .slide img {
             width: auto;
             height: auto;
-            max-width: 95%;
-            max-height: 95%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             object-position: center;
             image-rendering: -webkit-optimize-contrast;
@@ -121,12 +120,12 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(0, 58, 112, 0.5); /* 도트 색상을 푸터 색상과 맞춤 */
             cursor: pointer;
         }
         
         .slider-dot.active {
-            background-color: white;
+            background-color: #003a70; /* 활성 도트 색상을 푸터 색상과 맞춤 */
         }
         
         .slider-arrow {
@@ -135,7 +134,7 @@
             transform: translateY(-50%);
             width: 36px;
             height: 36px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 58, 112, 0.7); /* 화살표 배경색을 푸터 색상과 맞춤 */
             color: white;
             border-radius: 50%;
             display: flex;
@@ -165,7 +164,6 @@
             align-items: center;
             text-align: center;
             width: 100%;
-            /* 고정 높이 제거하고 콘텐츠에 맞게 자동 조정 */
         }
         
         .footer-info {
@@ -232,11 +230,6 @@
                 width: 8px;
                 height: 8px;
             }
-            
-            .slide img {
-                max-width: 92%;
-                max-height: 92%;
-            }
         }
         
         @media (max-width: 480px) {
@@ -261,11 +254,6 @@
                 width: 32px;
                 height: 32px;
                 font-size: 14px;
-            }
-            
-            .slide img {
-                max-width: 90%;
-                max-height: 90%;
             }
         }
         
@@ -307,11 +295,6 @@
             
             .footer-links a {
                 font-size: 10px;
-            }
-            
-            .slide img {
-                max-width: 85%;
-                max-height: 85%;
             }
         }
     </style>
@@ -387,7 +370,7 @@
                 const doc = document.documentElement;
                 doc.style.setProperty('--app-height', `${window.innerHeight}px`);
                 
-                // 이미지 크기 최적화
+                // 레이아웃 최적화
                 optimizeLayout();
             }
             
@@ -403,29 +386,20 @@
                 // 슬라이더 컨테이너 높이 조정
                 sliderContainer.style.height = `calc(100% - ${footerHeight}px)`;
                 
-                // 카카오톡 인앱 브라우저 감지
-                const userAgent = navigator.userAgent.toLowerCase();
-                if (userAgent.indexOf('kakaotalk') > -1) {
-                    // 카카오톡 인앱 브라우저에서 추가 최적화
-                    document.body.style.backgroundColor = '#000';
-                    mainContainer.style.height = `${window.innerHeight}px`;
-                }
-                
                 // 이미지 크기 최적화
                 const images = document.querySelectorAll('.slide img');
                 const isLandscape = window.innerWidth > window.innerHeight;
                 
                 images.forEach(img => {
+                    // 이미지 크기를 화면에 맞게 조정
                     if (isLandscape) {
                         // 가로 모드
-                        img.style.maxHeight = '85%';
+                        img.style.maxHeight = '90%';
+                        img.style.maxWidth = '90%';
                     } else {
                         // 세로 모드
-                        if (window.innerHeight < 600) {
-                            img.style.maxHeight = '85%';
-                        } else {
-                            img.style.maxHeight = '90%';
-                        }
+                        img.style.maxHeight = '90%';
+                        img.style.maxWidth = '90%';
                     }
                 });
             }
