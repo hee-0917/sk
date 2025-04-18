@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세강병원</title>
+    
+    <!-- 기본 메타 태그 -->
+    <meta name="description" content="의료법인 일민의료재단 세강병원">
+    
+    <!-- Open Graph / 소셜 미디어 공유용 메타 태그 -->
+    <meta property="og:title" content="세강병원">
+    <meta property="og:site_name" content="세강병원">
+    <meta property="og:description" content="의료법인 일민의료재단&#10;세강병원">
+    <meta property="og:image" content="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EB%A9%94%EC%9D%B8%EC%82%AC%EC%A7%84.jpg-dnFSy4gwshMAtZXiPZNf29Iykp3dsG.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="http://www.skhospital.co.kr">
+    <meta property="og:type" content="website">
+    
+    <!-- 카카오톡 전용 메타 태그 -->
+    <meta property="al:ios:url" content="http://www.skhospital.co.kr">
+    <meta property="al:android:url" content="http://www.skhospital.co.kr">
+    <meta property="al:web:url" content="http://www.skhospital.co.kr">
+    
+    <!-- Twitter Card 메타 태그 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="세강병원">
+    <meta name="twitter:description" content="의료법인 일민의료재단&#10;세강병원">
+    <meta name="twitter:image" content="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EB%A9%94%EC%9D%B8%EC%82%AC%EC%A7%84.jpg-dnFSy4gwshMAtZXiPZNf29Iykp3dsG.jpeg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .slider-container {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            width: 100%;
+            height: calc(100vh - 120px); /* 푸터 높이에 맞게 조정 */
+            max-height: 80vh; /* 최대 높이 제한 */
+        }
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 80vh; /* 이미지 최대 높이 제한 */
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        
+        .slider-dot.active {
+            background-color: white;
+        }
+        
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+        
+        .slider-arrow.left {
+            left: 10px;
+        }
+        
+        .slider-arrow.right {
+            right: 10px;
+        }
+        
+        footer {
+            background-color: #003a70;
+            color: white;
+            padding: 15px 20px;
+            font-size: 14px; /* 글씨 크기 증가 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 120px; /* 푸터 높이 증가 */
+            width: 100%;
+        }
+        
+        .footer-info {
+            margin-bottom: 6px; /* 간격 증가 */
+            font-weight: 500; /* 글씨 두께 증가 */
+        }
+        
+        .footer-address {
+            margin-bottom: 10px;
+        }
+        
+        .footer-contact {
+            margin-bottom: 6px; /* 간격 증가 */
+            font-weight: 500; /* 글씨 두께 증가 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .footer-phone {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* 간격 증가 */
+            font-weight: 500; /* 글씨 두께 증가 */
+            margin-top: 5px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px; /* 글씨 크기 증가 */
+        }
+        
+        .youtube-icon {
+            color: #FF0000;
+        }
+        
+        @media (max-width: 768px) {
+            .slider-container {
+                height: calc(100vh - 150px); /* 모바일에서 푸터 높이에 맞게 조정 */
+                max-height: 70vh; /* 모바일에서 최대 높이 제한 */
+            }
+            
+            footer {
+                padding: 12px 15px;
+                font-size: 13px; /* 모바일에서 글씨 크기 조정 */
+                min-height: 150px; /* 모바일에서 푸터 높이 증가 */
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .footer-links a {
+                font-size: 13px; /* 모바일에서 글씨 크기 조정 */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slider-container {
+                height: calc(100vh - 180px); /* 작은 모바일에서 푸터 높이에 맞게 조정 */
+                max-height: 60vh; /* 작은 모바일에서 최대 높이 제한 */
+            }
+            
+            footer {
+                padding: 10px 12px;
+                font-size: 12px; /* 작은 모바일에서 글씨 크기 조정 */
+                min-height: 180px; /* 작은 모바일에서 푸터 높이 증가 */
+            }
+            
+            .footer-links a {
+                font-size: 12px; /* 작은 모바일에서 글씨 크기 조정 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%841.jpg-UYRz37nBx4x7f5rVd4GheH7oTeDXM9.jpeg" alt="세강병원 이미지 1">
+            </div>
+            <div class="slide">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%842.jpg-kcdKgWoLKBRxb1i5EAvX8NrRRg4zX3.jpeg" alt="세강병원 이미지 2">
+            </div>
+            <div class="slide">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%843.jpg-tRT0DyU9uwrCt3qu4SWPCR0HnIazRW.jpeg" alt="세강병원 이미지 3">
+            </div>
+            <div class="slide">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%844.jpg-1699kQpqiDze8WOqJ0f4gAdSdXPrIz.jpeg" alt="세강병원 이미지 4">
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <div class="slider-dot active" data-index="0"></div>
+            <div class="slider-dot" data-index="1"></div>
+            <div class="slider-dot" data-index="2"></div>
+            <div class="slider-dot" data-index="3"></div>
+        </div>
+        
+        <div class="slider-arrow left">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="slider-arrow right">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-info">의료법인 일민의료재단 세강병원</div>
+        <div class="footer-address">
+            주소: 대구 달서구 구마로 220 
+            <a href="https://maps.app.goo.gl/wtV4UGcbyr5GzxuJ9" target="_blank" style="color: white;">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
+        </div>
+        <div class="footer-contact">
+            <div>대외협력 이사/본부장 곽봉용</div>
+            <div class="footer-phone">
+                <a href="tel:010-6522-8300" style="color: white; text-decoration: none;">
+                    <i class="fas fa-phone"></i> 010-6522-8300
+                </a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="http://www.skhospital.co.kr" target="_blank"><i class="fas fa-home"></i> 홈페이지</a>
+            <a href="https://www.youtube.com/@SEKANG_HOSPITAL" target="_blank">
+                <i class="fab fa-youtube youtube-icon"></i> 세강병원 유튜브
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const leftArrow = document.querySelector('.slider-arrow.left');
+            const rightArrow = document.querySelector('.slider-arrow.right');
+            
+            let currentIndex = 0;
+            const slideCount = slides.length;
+            
+            // Initialize touch events
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = slideCount - 1;
+                } else if (index >= slideCount) {
+                    index = 0;
+                }
+                
+                currentIndex = index;
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update active dot
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            // Event listeners for arrows
+            leftArrow.addEventListener('click', () => {
+                goToSlide(currentIndex - 1);
+            });
+            
+            rightArrow.addEventListener('click', () => {
+                goToSlide(currentIndex + 1);
+            });
+            
+            // Event listeners for dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.getAttribute('data-index'));
+                    goToSlide(index);
+                });
+            });
+            
+            // Touch events for swipe
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const threshold = 50; // Minimum distance for swipe
+                if (touchEndX < touchStartX - threshold) {
+                    // Swipe left
+                    goToSlide(currentIndex + 1);
+                } else if (touchEndX > touchStartX + threshold) {
+                    // Swipe right
+                    goToSlide(currentIndex - 1);
+                }
+            }
+            
+            // 화면 크기에 맞게 이미지 컨테이너 높이 조정
+            function adjustContainerHeight() {
+                const viewportHeight = window.innerHeight;
+                const footer = document.querySelector('footer');
+                const footerHeight = footer.offsetHeight;
+                const sliderContainer = document.querySelector('.slider-container');
+                
+                // 푸터 높이를 고려하여 슬라이더 컨테이너 높이 조정
+                sliderContainer.style.height = `${viewportHeight - footerHeight}px`;
+            }
+            
+            // 초기 로드 및 화면 크기 변경 시 높이 조정
+            window.addEventListener('load', adjustContainerHeight);
+            window.addEventListener('resize', adjustContainerHeight);
+            
+            // 자동 슬라이드 (5초마다)
+            let slideInterval = setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 5000);
+            
+            // 사용자 상호작용 시 자동 슬라이드 일시 중지
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            // 사용자 상호작용 종료 시 자동 슬라이드 재개
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
