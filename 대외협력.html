@@ -33,6 +33,7 @@
     <style>
         :root {
             --app-height: 100%;
+            --footer-height: 120px;
         }
         
         * {
@@ -55,7 +56,7 @@
         body {
             display: flex;
             flex-direction: column;
-            background-color: #f8f9fa;
+            background-color: #000; /* 배경색을 검정으로 변경하여 이미지와 푸터 사이의 간격이 눈에 띄지 않도록 함 */
         }
         
         .main-container {
@@ -71,7 +72,10 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            background-color: #000; /* 어두운 배경으로 이미지 대비 향상 */
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .slider {
@@ -87,23 +91,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* 이미지가 슬라이드 영역을 벗어나지 않도록 함 */
+            overflow: hidden;
         }
         
         .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: auto;
+            height: auto;
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
             object-position: center;
-            image-rendering: -webkit-optimize-contrast; /* 웹킷 브라우저에서 이미지 선명도 향상 */
-            image-rendering: crisp-edges; /* 모던 브라우저에서 이미지 선명도 향상 */
-            backface-visibility: hidden; /* 일부 모바일 기기에서 렌더링 품질 향상 */
-            transform: translateZ(0); /* 하드웨어 가속 활성화 */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .slider-nav {
             position: absolute;
-            bottom: 20px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -112,8 +118,8 @@
         }
         
         .slider-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
@@ -127,16 +133,16 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.3);
+            width: 36px;
+            height: 36px;
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             z-index: 10;
         }
         
@@ -151,32 +157,33 @@
         footer {
             background-color: #003a70;
             color: white;
-            padding: 15px 20px;
-            font-size: 14px;
+            padding: 12px 15px;
+            font-size: 13px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             width: 100%;
+            /* 고정 높이 제거하고 콘텐츠에 맞게 자동 조정 */
         }
         
         .footer-info {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-weight: 500;
         }
         
         .footer-address {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .footer-contact {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-weight: 500;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 3px;
         }
         
         .footer-phone {
@@ -191,13 +198,13 @@
             justify-content: center;
             gap: 15px;
             font-weight: 500;
-            margin-top: 5px;
+            margin-top: 4px;
         }
         
         .footer-links a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         .youtube-icon {
@@ -206,8 +213,8 @@
         
         @media (max-width: 768px) {
             footer {
-                padding: 12px 15px;
-                font-size: 13px;
+                padding: 10px 12px;
+                font-size: 12px;
             }
             
             .footer-links {
@@ -218,38 +225,93 @@
             }
             
             .footer-links a {
-                font-size: 13px;
+                font-size: 12px;
             }
             
             .slider-dot {
-                width: 10px;
-                height: 10px;
+                width: 8px;
+                height: 8px;
+            }
+            
+            .slide img {
+                max-width: 92%;
+                max-height: 92%;
             }
         }
         
         @media (max-width: 480px) {
             footer {
-                padding: 10px 12px;
-                font-size: 12px;
+                padding: 8px 10px;
+                font-size: 11px;
             }
             
             .footer-links a {
-                font-size: 12px;
+                font-size: 11px;
             }
             
             .footer-info, .footer-address, .footer-contact {
-                margin-bottom: 4px;
+                margin-bottom: 3px;
+            }
+            
+            .slider-nav {
+                bottom: 8px;
+            }
+            
+            .slider-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .slide img {
+                max-width: 90%;
+                max-height: 90%;
             }
         }
         
         /* 아이폰 SE와 같은 작은 화면에 대한 추가 최적화 */
         @media (max-height: 667px) {
             .footer-info, .footer-address, .footer-contact, .footer-links {
-                margin-bottom: 3px;
+                margin-bottom: 2px;
             }
             
             footer {
-                padding: 8px 10px;
+                padding: 6px 8px;
+            }
+            
+            .slider-nav {
+                bottom: 6px;
+            }
+            
+            .slider-dot {
+                width: 6px;
+                height: 6px;
+                margin: 0 2px;
+            }
+        }
+        
+        /* 가로 모드 최적화 */
+        @media (orientation: landscape) and (max-height: 500px) {
+            footer {
+                padding: 5px 8px;
+                font-size: 10px;
+            }
+            
+            .footer-info, .footer-address, .footer-contact {
+                margin-bottom: 1px;
+            }
+            
+            .footer-links {
+                margin-top: 1px;
+            }
+            
+            .footer-links a {
+                font-size: 10px;
+            }
+            
+            .slide img {
+                max-width: 85%;
+                max-height: 85%;
             }
         }
     </style>
@@ -324,10 +386,56 @@
             function setAppHeight() {
                 const doc = document.documentElement;
                 doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+                
+                // 이미지 크기 최적화
+                optimizeLayout();
+            }
+            
+            // 레이아웃 최적화 함수
+            function optimizeLayout() {
+                const mainContainer = document.querySelector('.main-container');
+                const sliderContainer = document.querySelector('.slider-container');
+                const footer = document.querySelector('footer');
+                
+                // 푸터 높이 계산
+                const footerHeight = footer.offsetHeight;
+                
+                // 슬라이더 컨테이너 높이 조정
+                sliderContainer.style.height = `calc(100% - ${footerHeight}px)`;
+                
+                // 카카오톡 인앱 브라우저 감지
+                const userAgent = navigator.userAgent.toLowerCase();
+                if (userAgent.indexOf('kakaotalk') > -1) {
+                    // 카카오톡 인앱 브라우저에서 추가 최적화
+                    document.body.style.backgroundColor = '#000';
+                    mainContainer.style.height = `${window.innerHeight}px`;
+                }
+                
+                // 이미지 크기 최적화
+                const images = document.querySelectorAll('.slide img');
+                const isLandscape = window.innerWidth > window.innerHeight;
+                
+                images.forEach(img => {
+                    if (isLandscape) {
+                        // 가로 모드
+                        img.style.maxHeight = '85%';
+                    } else {
+                        // 세로 모드
+                        if (window.innerHeight < 600) {
+                            img.style.maxHeight = '85%';
+                        } else {
+                            img.style.maxHeight = '90%';
+                        }
+                    }
+                });
             }
             
             // 초기 로드 및 화면 크기 변경 시 높이 조정
             window.addEventListener('resize', setAppHeight);
+            window.addEventListener('orientationchange', function() {
+                // 방향 전환 시 약간의 지연 후 레이아웃 최적화 (iOS에서 더 안정적)
+                setTimeout(setAppHeight, 300);
+            });
             setAppHeight();
             
             let currentIndex = 0;
@@ -420,7 +528,14 @@
             document.addEventListener('gesturestart', function(e) {
                 e.preventDefault();
             });
+            
+            // 이미지 로드 완료 후 최적화
+            window.addEventListener('load', function() {
+                setAppHeight();
+                optimizeLayout();
+            });
         });
     </script>
 </body>
 </html>
+
